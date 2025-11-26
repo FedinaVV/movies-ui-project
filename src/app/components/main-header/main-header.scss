@@ -1,0 +1,13 @@
+.main-header {
+  background-color: #141414;
+  height: 72px;
+
+  img {
+    height: 50px;
+    width: 200px;
+  }
+
+  &__main-icon {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,15 @@
+<h1>Список фильмов</h1>
+<div *ngFor="let movie of movies" class="movies">
+  <div [routerLink]="['movie/', movie.id]" class="movies__name">{{movie.name}}</div>
+  <div>{{movie.year}}</div>
+  <img src="/assets/icons/delete.svg" alt="delete" (click)="deleteMovie(movie.id)">
+  <!--<img src="/assets/icons/edit.svg" alt="edit" (click)="editMovie(movie.id)">-->
+
+</div>
+
+<div class="form" [formGroup]="form">
+  <h2>Добавить фильм</h2>
+  <input formControlName="name" type="text" placeholder="Введите название">
+  <input formControlName="year" type="text" placeholder="Введите год выхода">
+  <button (click)="createMovie()">Добавить</button>
+</div>
