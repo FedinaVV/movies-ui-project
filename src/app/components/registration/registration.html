@@ -1,0 +1,13 @@
+<div class="form" [formGroup]="form">
+  <div class="form__wrapper">
+    <h2>Регистрация</h2>
+    <div class="form__wrapper">
+      <input class="form__input" formControlName="email" type="email" placeholder="Введите электронную почту">
+      <input class="form__input" formControlName="password" type="text" placeholder="Придумайте пароль (не меннее 6 символов)">
+    </div>
+  </div>
+  <div class="form__btn-box">
+    <button matButton="outlined" class="btn-label" (click)="closeDialog()">Отмена</button>
+    <button matButton="filled" class="btn" [disabled]="!form.controls.email.value || !form.controls.password.value" (click)="createUser()">Зарегистрироваться</button>
+  </div>
+</div>

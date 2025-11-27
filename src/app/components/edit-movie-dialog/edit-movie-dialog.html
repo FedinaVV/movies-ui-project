@@ -1,0 +1,13 @@
+<div class="form" [formGroup]="form">
+  <div class="form__wrapper">
+    <h2>Изменить данные</h2>
+    <div class="form__wrapper">
+      <input class="form__input" formControlName="name" type="text" placeholder="Введите название">
+      <input class="form__input" formControlName="year" type="text" placeholder="Введите год выхода">
+    </div>
+  </div>
+  <div class="form__btn-box">
+    <button matButton="outlined" class="btn-label" (click)="closeDialog()">Отмена</button>
+    <button matButton="filled" class="btn" [disabled]="!form.controls.name.value || !form.controls.year.value" (click)="editMovie()">Изменить</button>
+  </div>
+</div>
