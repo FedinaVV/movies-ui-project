@@ -1,15 +1,21 @@
-<h1>Список фильмов</h1>
-<div *ngFor="let movie of movies" class="movies">
-  <div [routerLink]="['movie/', movie.id]" class="movies__name">{{movie.name}}</div>
-  <div>{{movie.year}}</div>
-  <img src="/assets/icons/delete.svg" alt="delete" (click)="deleteMovie(movie.id)">
-  <!--<img src="/assets/icons/edit.svg" alt="edit" (click)="editMovie(movie.id)">-->
+<div class="container movies-container">
+  <div class="movies-header">
+    <h2 class="title">Список фильмов</h2>
+    <div>
+      <input class="movies-header__input" [formControl]="inputField" placeholder="Поиск по названию" type="text">
+    </div>
+    <button class="btn" matButton="filled" (click)="openDialog()">+ Добавить фильм</button>
+  </div>
 
-</div>
+  <div class="movies-content">
+    <div *ngFor="let movie of filteredMovies" class="movies">
+      <div class="movies__item" [routerLink]="['movie/', movie.id]">
+        <div class="movies__name">{{movie.name}}</div>
+        <div>{{movie.year}}</div>
+      </div>
 
-<div class="form" [formGroup]="form">
-  <h2>Добавить фильм</h2>
-  <input formControlName="name" type="text" placeholder="Введите название">
-  <input formControlName="year" type="text" placeholder="Введите год выхода">
-  <button (click)="createMovie()">Добавить</button>
+      <img src="/assets/icons/delete.svg" alt="delete" (click)="deleteMovie(movie.id)">
+    </div>
+  </div>
+
 </div>

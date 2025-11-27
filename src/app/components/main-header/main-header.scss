@@ -2,6 +2,12 @@
   background-color: #141414;
   height: 72px;
 
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   img {
     height: 50px;
     width: 200px;
@@ -9,5 +15,10 @@
 
   &__main-icon {
     padding: 10px;
+  }
+
+  &__registr-btn {
+    color: #ffffff;
+    cursor: pointer;
   }
 }

@@ -1,12 +1,35 @@
+.movie-container {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
 .btn-back {
   width: fit-content;
   display: flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
+  margin-bottom: 15px;
+  color: #d54200;
 
   img {
     width: 20px;
     height: 20px;
+  }
+}
+
+.movie {
+  display: flex;
+  align-items: start;
+  gap: 35px;
+
+  &__name {
+    margin-bottom: 15px;
+  }
+
+  &__edit{
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
   }
 }

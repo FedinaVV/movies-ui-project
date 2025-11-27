@@ -1,6 +1,17 @@
-<div class="btn-back" [routerLink]="['/']">
-  <img src="assets/icons/arrow.svg" alt="arrow">
-  <span>Вернуться на главную страницу</span>
+<div class="container movie-container">
+  <div class="btn-back" [routerLink]="['/']">
+    <img src="assets/icons/arrow.svg" alt="arrow">
+    <span>Вернуться на главную страницу</span>
+  </div>
+  <div class="movie">
+    <div class="movie__content">
+      <h1 class="movie__name">{{movie?.name}}</h1>
+      <div>{{movie?.year}}</div>
+    </div>
+    <div>
+      <img class="movie__edit" src="/assets/icons/edit.svg" alt="edit" (click)="openEditDialog()">
+    </div>
+  </div>
+
 </div>
-<h1>{{movie?.name}}</h1>
-<div>{{movie?.year}}</div>
+

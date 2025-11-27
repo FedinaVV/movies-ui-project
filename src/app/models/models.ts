@@ -9,3 +9,9 @@ export type MoviesList = [{
   name: string;
   year: string;
 }]
+
+export type UserModel = {
+  id?: number;
+  email: string;
+  password: string;
+}

@@ -1,46 +1,62 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../services/api.service';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MoviesList} from '../../models/models';
 import {CommonModule} from '@angular/common';
 import {firstValueFrom} from 'rxjs';
 import {RouterLink} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {AddMovieDialog} from '../add-movie-dialog/add-movie-dialog';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   standalone: true,
   selector: 'app-main',
   imports: [
     ReactiveFormsModule,
+    MatButtonModule,
     CommonModule,
-    RouterLink
-
+    RouterLink,
   ],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
 export class Main implements OnInit {
 
-  form = new FormGroup({
-    name: new FormControl(),
-    year: new FormControl()
-  });
-
   movies: MoviesList | undefined;
+  inputField = new FormControl('');
+  filteredMovies: MoviesList | undefined;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private dialog: MatDialog
+  ) {}
 
   async ngOnInit() {
    const movies = await firstValueFrom(this.apiService.getTestData())
-      this.movies = movies;
-      console.log(this.movies)
+    this.movies = movies;
+    this.filteredMovies = movies;
+      console.log(this.movies);
+
+      this.inputField.valueChanges.subscribe(value => {
+        if (!value || value.trim().length === 0) {
+          this.filteredMovies = movies;
+          return;
+        } else {
+          const decodedValue = decodeURIComponent(value);
+          this.apiService.findMovie(decodedValue).subscribe(resp => {
+            this.filteredMovies = resp;
+          })
+        }
+
+      })
   }
 
-  createMovie() {
-    const nameMovie = this.form.controls.name.value;
-    const yearMovie = this.form.controls.year.value;
-
-    this.apiService.createMovie({name: nameMovie, year: yearMovie}).subscribe(() => {
-     window.location.reload();
+  openDialog() {
+    this.dialog.open(AddMovieDialog, {
+      width: '500px',
+      height: '400px'
     })
   }
 
@@ -49,16 +65,4 @@ export class Main implements OnInit {
     window.location.reload();
   })
   }
-
-  /*editMovie(id: number) {
-   const request: MoviesModel = {
-      name: this.formMovies.controls.name.value,
-      year: this.formMovies.controls.year.value
-    }
-
-    this.apiService.updateMovie(id, request).subscribe((resp) => {
-      console.log(resp)
-      //window.location.reload();
-    })
-  }*/
 }

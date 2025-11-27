@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {MoviesList, MoviesModel} from '../models/models';
+import {MoviesList, MoviesModel, UserModel} from '../models/models';
 
 
 @Injectable({
@@ -18,7 +18,11 @@ export class ApiService {
   }
 
   getMovieById(id: number) {
-    return this.http.get<MoviesModel>(`${this.baseUrl}/movies/${id}`)
+    return this.http.get<MoviesModel>(`${this.baseUrl}/movies/${id}`);
+  }
+
+  findMovie(name: string) {
+    return this.http.get<MoviesList>(`${this.baseUrl}/movies/search/${name}`);
   }
 
   createMovie(request: MoviesModel) {
@@ -31,5 +35,9 @@ export class ApiService {
 
   deleteMovie(id: number) {
     return this.http.delete(`${this.baseUrl}/movies/${id}`);
+  }
+
+  createUser(request: UserModel) {
+    return this.http.post(`${this.baseUrl}/users/create`, request);
   }
 }
