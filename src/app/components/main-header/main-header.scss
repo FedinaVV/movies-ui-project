@@ -17,6 +17,12 @@
     padding: 10px;
   }
 
+  &__btn-dialogs-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px
+  }
+
   &__registr-btn {
     color: #ffffff;
     cursor: pointer;

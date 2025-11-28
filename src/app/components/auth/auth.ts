@@ -6,16 +6,16 @@ import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'app-auth',
   imports: [
     ReactiveFormsModule,
     CommonModule,
     MatButtonModule
   ],
-  templateUrl: './registration.html',
-  styleUrl: './registration.scss',
+  templateUrl: './auth.html',
+  styleUrl: './auth.scss',
 })
-export class Registration {
+export class Auth {
 
   form = new FormGroup({
     email: new FormControl(),
@@ -32,12 +32,16 @@ export class Registration {
     this.dialog.closeAll();
   }
 
-  createUser() {
+  authUser() {
     const emailUser = this.form.controls.email.value;
     const passUser = this.form.controls.password.value;
-    this.apiService.createUser({email: emailUser, password: passUser}).subscribe(() => {
-      this.closeDialog();
-      window.location.reload();
+
+    console.log(passUser)
+
+    this.apiService.authUser({email: emailUser, password: passUser}).subscribe((resp) => {
+      console.log(resp)
+      //this.closeDialog();
+      //window.location.reload();
     })
   }
 }

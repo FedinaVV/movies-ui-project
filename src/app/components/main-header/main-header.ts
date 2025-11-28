@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Registration} from '../registration/registration';
 import {ApiService} from '../../services/api.service';
 import {MatDialog} from '@angular/material/dialog';
+import {Auth} from '../auth/auth';
 
 @Component({
   selector: 'app-main-header',
@@ -19,6 +20,13 @@ export class MainHeader {
 
   openRegistrDialog() {
     this.dialog.open(Registration, {
+      width: '500px',
+      height: '400px'
+    })
+  }
+
+  openAuthDialog() {
+    this.dialog.open(Auth, {
       width: '500px',
       height: '400px'
     })

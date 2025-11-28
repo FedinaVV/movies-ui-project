@@ -40,4 +40,8 @@ export class ApiService {
   createUser(request: UserModel) {
     return this.http.post(`${this.baseUrl}/users/create`, request);
   }
+
+  authUser(request: UserModel) {
+    return this.http.post(`${this.baseUrl}/auth/login`, request);
+  }
 }
