@@ -7,6 +7,7 @@
     <div class="movie__content">
       <h1 class="movie__name">{{movie?.name}}</h1>
       <div>{{movie?.year}}</div>
+      <img [src]="movie?.poster" alt="poster" class="movie__poster">
     </div>
     <div>
       <img class="movie__edit" src="/assets/icons/edit.svg" alt="edit" (click)="openEditDialog()">

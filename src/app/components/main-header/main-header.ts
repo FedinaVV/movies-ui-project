@@ -3,10 +3,12 @@ import {Registration} from '../registration/registration';
 import {ApiService} from '../../services/api.service';
 import {MatDialog} from '@angular/material/dialog';
 import {Auth} from '../auth/auth';
+import {RouterLink} from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-main-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './main-header.html',
   styleUrl: './main-header.scss',
 })

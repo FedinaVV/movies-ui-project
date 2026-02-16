@@ -23,14 +23,15 @@ export class EditMovieDialog implements OnInit{
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: MoviesModel,
-    private apiService: ApiService,
+    protected apiService: ApiService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl(this.data.name),
-      year: new FormControl(this.data.year)
+      year: new FormControl(this.data.year),
+      poster: new FormControl(this.data.poster)
     });
   }
 
@@ -41,7 +42,8 @@ export class EditMovieDialog implements OnInit{
   editMovie() {
     const request: MoviesModel = {
       name: this.form.controls.name.value,
-      year: this.form.controls.year.value
+      year: this.form.controls.year.value,
+      poster: this.apiService.imageBase64(),
     }
 
     if (this.data.id) {

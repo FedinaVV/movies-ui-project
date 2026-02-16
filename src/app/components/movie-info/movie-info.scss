@@ -27,6 +27,13 @@
     margin-bottom: 15px;
   }
 
+  &__poster {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
   &__edit{
     width: 18px;
     height: 18px;

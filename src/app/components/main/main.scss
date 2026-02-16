@@ -1,11 +1,12 @@
 .movies-container {
-  padding: 20px;
+  padding: 20px 40px;
   background-color: #ffffff;
 }
 
 .movies-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 35px;
   margin-bottom: 30px;
 
@@ -22,7 +23,8 @@
 .movies-content {
   display: flex;
   align-items: center;
-  gap: 35px;
+  justify-content: space-between;
+  gap: 25px;
   flex-wrap: wrap;
 }
 
@@ -38,10 +40,31 @@
     font-size: 20px;
   }
 
-  img {
+  &__poster {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__delete {
     height: 18px;
     width: 18px;
     cursor: pointer;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 200px 0;
+
+  &__text {
+    font-size: 24px;
+  }
+
+  img {
+    height: 70px;
+    width: 70px;
   }
 }
 

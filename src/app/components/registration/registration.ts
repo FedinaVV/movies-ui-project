@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({
+  standalone: true,
   selector: 'app-registration',
   imports: [
     ReactiveFormsModule,

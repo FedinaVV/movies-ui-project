@@ -20,11 +20,12 @@ export class AddMovieDialog {
 
   form = new FormGroup({
     name: new FormControl(),
-    year: new FormControl()
+    year: new FormControl(),
+    poster: new FormControl()
   });
 
   constructor(
-    private apiService: ApiService,
+    protected apiService: ApiService,
     private dialog: MatDialog
   ) {}
 
@@ -35,8 +36,9 @@ export class AddMovieDialog {
   createMovie() {
     const nameMovie = this.form.controls.name.value;
     const yearMovie = this.form.controls.year.value;
+    const posterMovie = this.apiService.imageBase64();
 
-    this.apiService.createMovie({name: nameMovie, year: yearMovie}).subscribe(() => {
+    this.apiService.createMovie({name: nameMovie, year: yearMovie, poster: posterMovie}).subscribe(() => {
       this.closeDialog();
       window.location.reload();
     })

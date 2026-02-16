@@ -4,6 +4,7 @@
   <div class="form__wrapper">
     <input class="form__input" formControlName="name" type="text" placeholder="Введите название">
     <input class="form__input" formControlName="year" type="text" placeholder="Введите год выхода">
+    <input class="form__input" formControlName="poster" type="file" placeholder="Прикрепите постер к фильму" (change)="apiService.changeFileFormat($event)">
   </div>
   </div>
   <div class="form__btn-box">

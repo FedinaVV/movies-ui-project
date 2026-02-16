@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {MoviesList, MoviesModel, UserModel} from '../models/models';
 
@@ -9,8 +9,10 @@ import {MoviesList, MoviesModel, UserModel} from '../models/models';
 
 export class ApiService {
   private http = inject(HttpClient);
-
   private baseUrl = 'http://localhost:3000';
+
+  public imageBase64 = signal('');
+
   constructor() {}
 
   getTestData() {
@@ -44,4 +46,24 @@ export class ApiService {
   authUser(request: UserModel) {
     return this.http.post(`${this.baseUrl}/auth/login`, request);
   }
+
+  changeFileFormat(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if (!target.files || !target.files.length) return;
+
+    const file = target.files.item(0)!;
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      this.imageBase64.set(reader.result?.toString() ?? '');
+      console.log(this.imageBase64)
+      //return this.imageBase64;
+    };
+
+
+  }
+
 }
