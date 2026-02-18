@@ -7,16 +7,20 @@
     <button class="btn" matButton="filled" (click)="openDialog()">+ Добавить фильм</button>
   </div>
 
-  <div class="movies-content" *ngIf="filteredMovies && filteredMovies.length > 0; else empty">
-    <div *ngFor="let movie of filteredMovies" class="movies">
-      <div class="movies__item" [routerLink]="['movie/', movie.id]">
-        <div class="movies__name">{{movie.name}}</div>
-        <img [src]="movie.poster" alt="poster" class="movies__poster">
-        <div>{{movie.year}}</div>
+  <div *ngIf="!loading">
+    <div class="movies-content" *ngIf="filteredMovies && filteredMovies.length > 0; else empty">
+      <div *ngFor="let movie of filteredMovies" class="movies">
+        <div class="movies__item" [routerLink]="['movie/', movie.id]">
+          <div class="movies__name">{{movie.name}}</div>
+          <img [src]="movie.poster" alt="poster" class="movies__poster">
+          <div>{{movie.year}}</div>
+        </div>
       </div>
-
-      <img src="/assets/icons/delete.svg" alt="delete" class="movies__delete" (click)="deleteMovie(movie.id)">
     </div>
+  </div>
+
+  <div class="spinner-container" *ngIf="loading">
+    <div class="spinner"></div>
   </div>
 
   <ng-template #empty>

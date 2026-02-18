@@ -36,4 +36,13 @@ export class MovieInfo implements OnInit {
     })
   }
 
+  deleteMovie(id?: number) {
+    if (id) {
+      this.apiService.deleteMovie(id).subscribe(() => {
+        window.location.reload();
+      })
+    }
+
+  }
+
 }

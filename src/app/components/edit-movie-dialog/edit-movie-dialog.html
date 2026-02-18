@@ -5,6 +5,7 @@
       <input class="form__input" formControlName="name" type="text" placeholder="Введите название">
       <input class="form__input" formControlName="year" type="text" placeholder="Введите год выхода">
       <input class="form__input" formControlName="poster" type="file" placeholder="Прикрепите постер к фильму" (change)="apiService.changeFileFormat($event)">
+      <input class="form__input" formControlName="rating" type="text" placeholder="Введите рейтинг с кинопоиска">
     </div>
   </div>
   <div class="form__btn-box">

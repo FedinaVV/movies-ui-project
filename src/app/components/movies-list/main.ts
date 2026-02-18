@@ -24,9 +24,10 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class Main implements OnInit {
 
-  movies: MoviesList | undefined;
-  inputField = new FormControl('');
-  filteredMovies: MoviesList | undefined;
+  public movies: MoviesList | undefined;
+  public inputField = new FormControl('');
+  public filteredMovies: MoviesList | undefined;
+  public loading: boolean = true;
 
   constructor(
     private apiService: ApiService,
@@ -37,16 +38,19 @@ export class Main implements OnInit {
    const movies = await firstValueFrom(this.apiService.getTestData())
     this.movies = movies;
     this.filteredMovies = movies;
+    this.loading = false;
       console.log(this.movies);
 
       this.inputField.valueChanges.subscribe(value => {
         if (!value || value.trim().length === 0) {
           this.filteredMovies = movies;
+          this.loading = false;
           return;
         } else {
           const decodedValue = decodeURIComponent(value);
           this.apiService.findMovie(decodedValue).subscribe(resp => {
             this.filteredMovies = resp;
+            this.loading = false;
           })
         }
 
@@ -60,9 +64,4 @@ export class Main implements OnInit {
     })
   }
 
-  deleteMovie(id: number) {
-  this.apiService.deleteMovie(id).subscribe((resp) => {
-    window.location.reload();
-  })
-  }
 }

@@ -31,7 +31,8 @@ export class EditMovieDialog implements OnInit{
     this.form = new FormGroup({
       name: new FormControl(this.data.name),
       year: new FormControl(this.data.year),
-      poster: new FormControl(this.data.poster)
+      poster: new FormControl(this.data.poster),
+      rating: new FormControl(this.data.rating)
     });
   }
 
@@ -44,6 +45,7 @@ export class EditMovieDialog implements OnInit{
       name: this.form.controls.name.value,
       year: this.form.controls.year.value,
       poster: this.apiService.imageBase64(),
+      rating: this.form.controls.rating.value,
     }
 
     if (this.data.id) {

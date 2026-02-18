@@ -3,6 +3,7 @@ export type MoviesModel = {
   name: string;
   year: string;
   poster: string;
+  rating?: string;
 }
 
 export type MoviesList = [{
@@ -10,6 +11,7 @@ export type MoviesList = [{
   name: string;
   year: string;
   poster: string;
+  rating?: string;
 }]
 
 export type UserModel = {
